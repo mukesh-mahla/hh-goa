@@ -73,7 +73,7 @@ export default function BuilderControls({
     formdata.append("timestamp", timestamp.toString());
     formdata.append("signature", signature);
     formdata.append("api_key", apiKey);
-    formdata.append("file", file);
+    formdata.append("file", f);
 
   const signeddUrl =   await fetch("https://hh-goa-1onj.onrender.com/get-url",{
       method:"POST"
