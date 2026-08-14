@@ -55,13 +55,13 @@ export default function BuilderControls({
   setSelectedStickers,
   onOpenWebcam,
   onDownload,
-  
+  onShareX,
   onCopyImage,
   onCopyLink,
   onPrint,
   copiedStatus,
 }) {
-  const [d,setd] = useState()
+  
   const fileInputRef = useRef(null);
 
   // File upload handler
@@ -75,7 +75,7 @@ export default function BuilderControls({
     formdata.append("api_key", apiKey);
     formdata.append("file", file);
 
-  const signeddUrl =   await fetch("http://localhost:3000/get-url",{
+  const signeddUrl =   await fetch("https://hh-goa-1onj.onrender.com/get-url",{
       method:"POST"
     })
 
@@ -90,7 +90,6 @@ export default function BuilderControls({
     );
 const data = await cloudnaryResponse.json();
     localStorage.setItem("link",data.secure_url)
-
   };
 
 
