@@ -38,8 +38,9 @@ export default function App() {
     if (chosenFormat) setFormat(chosenFormat);
     studioRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
+  const link = localStorage.getItem("link")
    const handleShareX = () => {
-    const link = localStorage.getItem("link")
+    
     triggerCelebration();
     const tweetText = encodeURIComponent(
       `Just minted my Hacker House Goa 2026 // Glitch Paradise ${

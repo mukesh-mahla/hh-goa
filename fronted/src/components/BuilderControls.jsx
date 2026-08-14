@@ -67,13 +67,9 @@ export default function BuilderControls({
   // File upload handler
   const  handleFileUpload =async (file) => {
     if (!file) return;
-    const f = file.target.file[0]
+    
       const formdata = new FormData();
-    formdata.append("folder", folder);
-    formdata.append("timestamp", timestamp.toString());
-    formdata.append("signature", signature);
-    formdata.append("api_key", apiKey);
-    formdata.append("file", f);
+   
 
   const signeddUrl =   await fetch("https://hh-goa-1onj.onrender.com/get-url",{
       method:"POST"
@@ -81,8 +77,14 @@ export default function BuilderControls({
 
       const { timestamp, signature, folder, apiKey } = await signeddUrl.json();
     
+       formdata.append("folder", folder);
+    formdata.append("timestamp", timestamp.toString());
+    formdata.append("signature", signature);
+    formdata.append("api_key", apiKey);
+    formdata.append("file", file);
+
  const cloudnaryResponse = await fetch(
-      `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+      `https://api.cloudinary.com/v1_1/w8utk0ut/image/upload`,
       {
         method: "POST",
         body: formdata,
@@ -90,6 +92,8 @@ export default function BuilderControls({
     );
 const data = await cloudnaryResponse.json();
     localStorage.setItem("link",data.secure_url)
+
+    setPhoto(data.secure_url)
   };
 
 
